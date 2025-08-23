@@ -52,7 +52,7 @@ const SearchPage = () => {
           {animeResults.length > 0 && (
             <div>
               <h2 className="text-3xl mb-4 text-left">Anime</h2>
-              <div className="grid grid-cols-4 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
                 {animeResults.map((anime) => (
                   <AnimeCard key={anime.mal_id} anime={anime} />
                 ))}
@@ -64,7 +64,7 @@ const SearchPage = () => {
           {mangaResults.length > 0 && (
             <div>
               <h3 className="text-3xl mb-4 text-left">Manga</h3>
-              <div className="grid grid-cols-4 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
                 {mangaResults.map((manga) => (
                   <AnimeCard key={manga.mal_id} anime={manga} />
                 ))}

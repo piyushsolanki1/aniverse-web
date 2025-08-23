@@ -48,7 +48,7 @@ const AnimePage = () => {
   return (
     <div className="p-6 bg-gray-800 min-h-screen text-white">
       <h2 className="text-3xl mb-4 text-left">Anime Collection</h2>
-      <div className="grid grid-cols-4 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
         {animeList.map((anime, index) => {
           if (index === animeList.length - 1) {
             return <div ref={lastAnimeRef} key={anime.mal_id}><AnimeCard anime={anime} /></div>;

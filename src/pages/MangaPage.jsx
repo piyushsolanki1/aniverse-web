@@ -54,7 +54,7 @@ const MangaPage = () => {
   return (
     <div className="p-6 bg-gray-800 min-h-screen text-white">
       <h2 className="text-3xl mb-4 text-left">Manga Collection</h2>
-      <div className="grid grid-cols-4 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
       {mangaList.map((manga, index) => {
   if (index === mangaList.length - 1) {
     return (
