@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import SearchPage from "./pages/SearchPage";
 import AnimePage from "./pages/AnimePage";
 import MangaPage from "./pages/MangaPage";
