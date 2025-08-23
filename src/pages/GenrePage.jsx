@@ -72,7 +72,7 @@ const GenrePage = () => {
 
       {/* Manga Section */}
       <h2 className="text-3xl mt-8 mb-4 text-left">{genreName} Manga</h2>
-      <div className="grid grid-cols-4 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
         {mangas.length > 0 ? (
           mangas.map((manga) => (
             <AnimeCard key={manga.mal_id} anime={manga} />
