@@ -1,16 +1,34 @@
-<<<<<<< HEAD
-# React + Vite
+# AniVerse 🎬✨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An anime discovery web app built with **React + Vite + TailwindCSS**.  
+Browse trending anime, trending manga, and explore by genres with a sleek, responsive design.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
+- 🎥 Hero Section with auto-sliding anime showcase  
+- 🔥 Trending Anime & Manga lists  
+- 📚 Genre-based exploration  
+- 📱 Fully responsive design for mobile, tablet, and desktop  
+- 🎨 Styled with TailwindCSS for modern UI  
+- ⚡ Built using Vite for super fast performance  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# aniverse-web
->>>>>>> 12fae91aed5c3a4a3d7f9054a14976dd666bb7e4
+## 🛠️ Tech Stack
+- **React** (frontend framework)  
+- **Vite** (fast bundler)  
+- **TailwindCSS** (UI styling)  
+- **React Router DOM** (navigation & routing)  
+- **Lucide-react** (icons)  
+- **Jikan API** (anime & manga data from MyAnimeList)  
+
+---
+
+## 📂 Setup
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/piyushsolanki1/aniverse-web.git
+cd animeverse
+
