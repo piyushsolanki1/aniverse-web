@@ -10,6 +10,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AnimeProvider from "./components/AnimeContext";
 import GenrePage from "./pages/GenrePage";
 import ScrollTop from "./components/ScrollTop";
+import WatchPage from "./pages/WatchPage";
+import WatchListPage from "./pages/WatchListPage";
 
 function App() {
   return (
@@ -25,7 +27,9 @@ function App() {
               <Route path="/Anime" element={<AnimePage />} />
               <Route path="/Manga" element={<MangaPage />} />
               <Route path="/genre/:genreName" element={<GenrePage />} />
-            </Routes>
+              <Route path="/watch/:type/:id" element={<WatchPage />} />
+              <Route path="/watchlist" element={<WatchListPage />} />
+              </Routes>
           </main>
           <Footer />
         </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDebounce } from "react-use";
 import Search from "./Search";
 import { useNavigate } from "react-router-dom";
+import WatchListPage from "../pages/WatchListPage";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,6 +50,12 @@ const Navbar = () => {
                   className="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Manga
+                </a>
+                <a
+                  href="/WatchList"
+                  className="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  WatchList
                 </a>
               </div>
             </div>

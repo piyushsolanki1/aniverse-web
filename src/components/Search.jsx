@@ -1,7 +1,14 @@
 import React from "react";
 import { SearchIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const Search = ({searchTerm, setSearchTerm}) => {
+const Search = ({ searchTerm, setSearchTerm }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/search"); // Directly go to SearchPage
+  };
+
   return (
     <div className="relative">
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -12,8 +19,9 @@ const Search = ({searchTerm, setSearchTerm}) => {
         placeholder="Search anime..."
         type="search"
         value={searchTerm}
-                onChange={(event)=> setSearchTerm(event.target.value)}/>
-      
+        onChange={(event) => setSearchTerm(event.target.value)}
+        onClick={handleClick} // Navigate on click
+      />
     </div>
   );
 };

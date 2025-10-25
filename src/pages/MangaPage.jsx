@@ -56,16 +56,18 @@ const MangaPage = () => {
       <h2 className="text-3xl mb-4 text-left">Manga Collection</h2>
       <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
       {mangaList.map((manga, index) => {
+  const props = { anime: manga, type: "manga" };
   if (index === mangaList.length - 1) {
     return (
       <div ref={lastMangaRef} key={`${manga.mal_id}-${index}`}>
-        <AnimeCard anime={manga} />
+        <AnimeCard {...props} />
       </div>
     );
   } else {
-    return <AnimeCard key={`${manga.mal_id}-${index}`} anime={manga} />;
+    return <AnimeCard key={`${manga.mal_id}-${index}`} {...props} />;
   }
 })}
+
 
       </div>
       {loading && <p className="text-center mt-4">Loading more Manga...</p>}
