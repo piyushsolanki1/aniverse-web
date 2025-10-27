@@ -12,7 +12,7 @@ import GenrePage from "./pages/GenrePage";
 import ScrollTop from "./components/ScrollTop";
 import WatchPage from "./pages/WatchPage";
 import WatchListPage from "./pages/WatchListPage";
-
+import LoginPage from "./pages/LoginPage";
 function App() {
   return (
     <Router>
@@ -29,6 +29,7 @@ function App() {
               <Route path="/genre/:genreName" element={<GenrePage />} />
               <Route path="/watch/:type/:id" element={<WatchPage />} />
               <Route path="/watchlist" element={<WatchListPage />} />
+              <Route path="/login" element={<LoginPage />} />
               </Routes>
           </main>
           <Footer />

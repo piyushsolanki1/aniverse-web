@@ -65,7 +65,8 @@ const Navbar = () => {
               <form onSubmit={handleSearch} className="hidden md:block w-1/3">
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </form>
-              <button className="ml-3 bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-md text-sm font-medium">
+              <button className="ml-3 bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-md text-sm font-medium"
+              onClick={() => navigate("/login")}>
                 Sign In
               </button>
             </div>
