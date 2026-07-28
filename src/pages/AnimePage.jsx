@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import AnimeCard from '../components/AnimeCard';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import AnimeCard from "../components/AnimeCard";
 
 const AnimePage = () => {
   const [animeList, setAnimeList] = useState([]);
@@ -8,87 +8,105 @@ const AnimePage = () => {
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchAnime = async () => {
+  const observer = useRef(null);
+  const initialFetchDone = useRef(false);
+
+  const fetchAnime = useCallback(async () => {
     if (loading || !hasMore) return;
+
     setLoading(true);
     setError(null);
 
     try {
-      const res = await fetch(`https://api.jikan.moe/v4/anime?page=${page}`);
+      const res = await fetch(
+        `https://api.jikan.moe/v4/top/anime?page=${page}`
+      );
+
       if (!res.ok) {
         if (res.status === 429) {
-          console.warn("Rate limited. Retrying in 2 seconds...");
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-          setLoading(false);
-          return fetchAnime(); // retry after waiting
-        } else {
-          throw new Error(`HTTP ${res.status}`);
+          console.warn("Rate limited. Retrying later...");
+          return;
         }
+        throw new Error(`HTTP ${res.status}`);
       }
 
       const data = await res.json();
 
-      // guard against missing data
-      if (!data || !data.data) {
+      if (!data?.data?.length) {
         setHasMore(false);
         return;
       }
 
-      if (data.data.length === 0) {
-        setHasMore(false);
-      } else {
-        setAnimeList((prev) => [...prev, ...data.data]);
-        setPage((prev) => prev + 1);
-      }
+      setAnimeList((prev) => [...prev, ...data.data]);
+      setPage((prev) => prev + 1);
     } catch (err) {
       console.error("Error fetching anime:", err);
       setError(err.message);
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, loading, hasMore]);
 
   useEffect(() => {
-    // add a slight delay before initial fetch to avoid double call in dev
-    const timer = setTimeout(() => fetchAnime(), 500);
-    return () => clearTimeout(timer);
-  }, []);
+    if (initialFetchDone.current) return;
 
-  const observer = useRef();
+    initialFetchDone.current = true;
+    fetchAnime();
+  }, [fetchAnime]);
+
   const lastAnimeRef = useCallback(
     (node) => {
       if (loading) return;
+
       if (observer.current) observer.current.disconnect();
+
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
+        if (entries[0].isIntersecting && hasMore && !loading) {
           fetchAnime();
         }
       });
+
       if (node) observer.current.observe(node);
     },
-    [loading, hasMore]
+    [loading, hasMore, fetchAnime]
   );
 
   return (
-    <div className="p-6 bg-gray-800 min-h-screen text-white">
-      <h2 className="text-3xl mb-4 text-left">Anime Collection</h2>
-      <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+    <div className="min-h-screen bg-gray-800 p-6 text-white">
+      <h2 className="mb-6 text-3xl font-bold">Anime Collection</h2>
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
         {animeList.map((anime, index) => {
-          if (index === animeList.length - 1) {
-            return (
-              <div ref={lastAnimeRef} key={anime.mal_id}>
-<AnimeCard anime={anime} type="anime" />
-</div>
-            );
-          } else {
-            return <AnimeCard key={anime.mal_id} anime={anime} />;
-          }
+          const isLastItem = index === animeList.length - 1;
+
+          return (
+            <div
+              key={anime.mal_id}
+              ref={isLastItem ? lastAnimeRef : null}
+            >
+              <AnimeCard anime={anime} type="anime" />
+            </div>
+          );
         })}
       </div>
 
-      {loading && <p className="text-center mt-4">Loading more anime...</p>}
-      {error && <p className="text-center mt-4 text-red-400">{error}</p>}
-      {!hasMore && <p className="text-center mt-4">No more anime to load</p>}
+      {loading && (
+        <p className="mt-4 text-center">
+          Loading more anime...
+        </p>
+      )}
+
+      {error && (
+        <p className="mt-4 text-center text-red-400">
+          {error}
+        </p>
+      )}
+
+      {!hasMore && (
+        <p className="mt-4 text-center">
+          No more anime to load
+        </p>
+      )}
     </div>
   );
 };
